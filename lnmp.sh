@@ -96,6 +96,7 @@ cd php-7.0.23
 cp /usr/local/src/lnmp_install/php.ini /usr/local/php-7.0.23/lib/php.ini
 cp /usr/local/src/lnmp_install/php-fpm.conf /usr/local/php-7.0.23/etc/php-fpm.conf
 cp /usr/local/src/lnmp_install/php_7.0.23-fpm /etc/init.d/php_7.0.23-fpm
+cp /usr/local/php-7.0.23/lib/php.ini /usr/local/php-7.0.23/etc/ && mv /usr/local/php-7.0.23/lib/php.ini /usr/local/php-7.0.23/lib/php.ini.bak
 useradd php-fpm -s /sbin/nologin
 chmod +x /etc/init.d/php_7.0.23-fpm
 chkconfig --add php_7.0.23-fpm
