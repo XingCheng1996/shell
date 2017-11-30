@@ -10,8 +10,8 @@ cd  cphalcon/build/php7/64bits && make clean #可能会报错，忽略
 /usr/local/php-7.0.23/bin/phpize --clean  
 /usr/local/php-7.0.23/bin/phpize
 ./configure --with-php-config=/usr/local/php-7.0.23/bin/php-config   
-make && [ $(echo $?) -eq 0 ] && make install && [ $(echo $?) -eq 0 ] && cd /usr/local/php-7.0.23/lib/php/extensions/no-debug-zts*
-echo 'extension=phalcon.so' >> usr/local/php-7.0.23/etc/php.ini 
+make && [ $(echo $?) -eq 0 ] && make install
+echo 'extension=phalcon.so' >> /usr/local/php-7.0.23/etc/php.ini 
 /etc/init.d/php_7.0.23-fpm restart  
 }
 
