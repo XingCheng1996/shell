@@ -105,6 +105,12 @@ echo "============================= install php ok =========================="
 }
 
 
+if [ "$(sh -c pwd)" == '/usr/local/src/lnmp_install' ];then
+break
+else
+mkdir -p /usr/local/src/lnmp_install
+cd /usr/local/src/lnmp_install 
+fi
 
 InitInstall
 DownLoad
