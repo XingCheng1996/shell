@@ -15,12 +15,11 @@ yum install -y zlib zlib-devel
 ###########################################################
 python3_install(){
 cd $PWD
-#tar zvxf Python-3.6.4.tgz
+tar zvxf Python-3.6.4.tgz
 cd Python-3.6.4
 ./configure --enable-shared --prefix=/usr/local/python3.6.4
 make && make install
 #[ $(echo $?) -eq 0 ] | (echo "error" && exit)
-yum install -y python-pip
 }
 ##########################################################
 #安装
