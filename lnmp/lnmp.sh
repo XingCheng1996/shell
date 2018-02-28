@@ -33,7 +33,7 @@ function InitInstall()
 
 function DownLoad()
 {
-cd $DIR
+cd "$DIR"lnmp
 wget -c http://cn2.php.net/distributions/php-7.0.23.tar.gz
 wget -c http://nginx.org/download/nginx-1.13.5.tar.gz
 wget -c https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19.tar.gz
@@ -45,7 +45,7 @@ echo "==================download ok==============================="
 
 function InstallNginx()
 {
-cd $DIR
+cd "$DIR"lnmp
 tar -zvxf nginx-1.13.5.tar.gz
 cd nginx-1.13.5
 useradd nobody -s /sbin/nologin
@@ -65,7 +65,7 @@ echo "=============================== install nginx ok ====================="
 }
 
 function InstallMysql(){
-cd $DIR
+cd "$DIR"lnmp
 tar zvxf mysql-5.7.19.tar.gz
 useradd mysql -s /sbin/nologin
 cd mysql-5.7.19
@@ -89,7 +89,7 @@ echo "=================================mysql install ok =================="
 
 function InstallPhp()
 {
-cd $DIR
+cd "$DIR"lnmp
 tar zvxf php-7.0.23.tar.gz
 cd php-7.0.23
 ./configure --prefix=/usr/local/php-7.0.23 --with-config-file-path=/usr/local/php-7.0.23/etc --with-config-file-scan-dir=/usr/local/php-7.0.23/etc/php.d --with-pdo-mysql=/usr/local/mysql --with-mysql-sock=/data/mysql/mysql.sock --with-curl --with-freetype-dir --with-gd --with-gettext --with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-mysqli --with-openssl --with-pcre-regex --with-pdo-mysql --with-pdo-sqlite --with-pear --with-png-dir --with-xmlrpc --with-xsl --with-zlib --with-pdo-mysql --enable-fpm --with-fpm-user=php-fpm --with-fpm-group=php-fpm --enable-bcmath --enable-libxml --enable-inline-optimization --enable-gd-native-ttf --enable-mbregex --enable-mbstring --enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem  --enable-xml --enable-zip --enable-mysqlnd --with-jpeg-dir --enable-exif --with-mcrypt --enable-maintainer-zts
