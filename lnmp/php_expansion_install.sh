@@ -3,8 +3,12 @@
 ##create by xingcheng
 ##function 安装php拓展
 
+DIR=/opt/xingcheng/shell/
+
+yum install -y git
+
 phalcon_install(){
-cd /usr/local/src
+cd "$DIR"lnmp
 git clone --depth=1 git://github.com/phalcon/cphalcon.git  
 cd  cphalcon/build/php7/64bits && make clean #可能会报错，忽略 
 /usr/local/php-7.0.23/bin/phpize --clean  

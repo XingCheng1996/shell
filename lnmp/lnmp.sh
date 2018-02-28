@@ -66,10 +66,13 @@ echo "=============================== install nginx ok ====================="
 
 function InstallMysql(){
 cd "$DIR"lnmp
+mkdir -p /usr/local/boost/
+tar zvxf boost_1_59_0.tar.gz
+mv boost_1_59_0 /usr/local/boost/boost_1_59_0
 tar zvxf mysql-5.7.19.tar.gz
 useradd mysql -s /sbin/nologin
 cd mysql-5.7.19
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql -DMYSQL_USER=mysql -DSYSCONFDIR=/usr/local/mysql -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_DEBUG=0 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DWITH_EMBEDDED_SERVER=1 -DMYSQL_UNIX_ADDR=/data/mysql/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/usr/local/boost
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql -DMYSQL_USER=mysql -DSYSCONFDIR=/usr/local/mysql -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_DEBUG=0 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DWITH_EMBEDDED_SERVER=1 -DMYSQL_UNIX_ADDR=/data/mysql/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_BOOST=/usr/local/boost
 [ $(echo $?) -eq 0 ] && make
 [ $(echo $?) -eq 0 ] && make install
 [ $(echo $?) -eq 0 ] && echo "数据库安装成功" || (echo "数据库安装失败" && sleep 2 && exit)
