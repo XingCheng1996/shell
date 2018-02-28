@@ -6,7 +6,7 @@
 # SET THE PATH
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-DIR=/usr/local/src
+DIR=/opt/xingcheng/shell/
 
 # Check if user is root
 if [ $(id -u) != "0" ]; then
@@ -53,7 +53,10 @@ useradd nobody -s /sbin/nologin
 [ $(echo $?) -eq 0 ] && make
 [ $(echo $?) -eq 0 ] && make install
 [ $(echo $?) -eq 0 ] && echo "nginx安装成功 "|| (echo "nginx安装失败" && sleep 2 && exit)
-cp /usr/local/src/lnmp_install/nginx /etc/init.d/nginx
+#nginx主配置文件
+/bin/cp -rf "$DIR"lnmp/nginx.conf /usr/local/nginx/conf/nginx.conf #cp强制覆盖
+#nginx启动文件
+cp "$DIR"lnmp/nginx /etc/init.d/nginx
 chmod +x /etc/init.d/nginx
 chkconfig --add nginx 
 chkconfig nginx on
@@ -72,12 +75,12 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql -DMYSQ
 [ $(echo $?) -eq 0 ] && echo "数据库安装成功" || (echo "数据库安装失败" && sleep 2 && exit)
 mkdir -p /data/mysql
 chown -R mysql:mysql /data/mysql
-cp /usr/local/src/lnmp_install/my.cnf /etc/my.cnf
+cp "$DIR"lnmp/my.cnf /etc/my.cnf
 echo "export PATH=$PATH:/usr/local/mysql/bin/" >> /root/.bashrc
 source /root/.bashrc
 /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql
 [ $(echo $?) -eq 0 ] && echo "数据库初始化成功" || (echo "数据库初始化失败" && sleep 2)
-cp /usr/local/src/lnmp_install/mysqld /etc/init.d/mysqld
+cp "$DIR"lnmp/mysqld /etc/init.d/mysqld
 chmod 755 /etc/init.d/mysqld
 chkconfig --add mysqld
 /etc/init.d/mysqld start
@@ -93,9 +96,9 @@ cd php-7.0.23
 [ $(echo $?) -eq 0 ] && make
 [ $(echo $?) -eq 0 ] && make install
 [ $(echo $?) -eq 0 ] && echo "php安装成功" || (echo "php安装失败" && sleep 2 && exit)
-cp /usr/local/src/lnmp_install/php.ini /usr/local/php-7.0.23/lib/php.ini
-cp /usr/local/src/lnmp_install/php-fpm.conf /usr/local/php-7.0.23/etc/php-fpm.conf
-cp /usr/local/src/lnmp_install/php_7.0.23-fpm /etc/init.d/php_7.0.23-fpm
+cp "$DIR"lnmp/php.ini /usr/local/php-7.0.23/lib/php.ini
+cp "$DIR"lnmp/php-fpm.conf /usr/local/php-7.0.23/etc/php-fpm.conf
+cp "$DIR"lnmp/php_7.0.23-fpm /etc/init.d/php_7.0.23-fpm
 cp /usr/local/php-7.0.23/lib/php.ini /usr/local/php-7.0.23/etc/ && mv /usr/local/php-7.0.23/lib/php.ini /usr/local/php-7.0.23/lib/php.ini.bak
 useradd php-fpm -s /sbin/nologin
 chmod +x /etc/init.d/php_7.0.23-fpm
