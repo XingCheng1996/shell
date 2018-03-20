@@ -6,6 +6,25 @@
 DIR=/opt/xingcheng/shell/
 PHP_DIR=/usr/local/php-7.0.22/
 
+
+
+redis_installl(){
+#最好制作成rpm安装方式。
+cd /usr/local/src
+wget http://download.redis.io/releases/redis-4.0.8.tar.gz
+tar zvxf redis-4.0.8.tar.gz
+cd redis-4.0.8
+make -j4
+make PREFIX=/usr/local/redis  install
+mkdir /usr/local/redis/etc &&  mkdir /usr/local/redis/var
+cp "$DIR"install_service/redis.conf /usr/local/redis/etc/redis.conf
+cp "$DIR"install_service/redis /etc/init.d/redis
+useradd -s /sbin/nologin redis && chmod 777 /usr/local/redis/var && chmod 755 /etc/init.d/redis
+chkconfig --add redis
+chkconfig redis on
+service redis start
+}
+
 mongodb_install(){
 cd "$DIR"install_service
 (cat << EOF
