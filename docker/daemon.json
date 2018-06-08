@@ -1,0 +1,5 @@
+{
+    "graph": "/mnt/docker-data",
+    "storage-driver": "overlay",
+    "registry-mirrors": ["https://wpg22h25.mirror.aliyuncs.com"]
+}
