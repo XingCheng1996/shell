@@ -8,7 +8,7 @@ PHP_DIR=/usr/local/php-7.0.22/
 
 
 
-redis_installl(){
+redis_install(){
 #最好制作成rpm安装方式。
 cd /usr/local/src
 wget http://download.redis.io/releases/redis-4.0.8.tar.gz
@@ -53,10 +53,16 @@ echo 'extension=mongodb.so' >> "$PHP_DIR"etc/php.ini
 ./sbin/php-fpm  -t  && /etc/init.d/php_7.0.22-fpm reload
 
 ############################################################
-read -p " Do you want to install mongodb:Y/N " PHALCONCONFIRM
+read -p " Do you want to install mongodb:Y/N " MONGODBCONFIRM
 if [ "$PHALCONCONFIRM" = "Y" ] || [ "$PHALCONCONFIRM" = "y" ];then
     mongodb_install
 else
 echo "=================== install the next thing =============="
 fi
 
+read -p " Do you want to install redis:Y/N " REDISCONFIRM
+if [ "$PHALCONCONFIRM" = "Y" ] || [ "$PHALCONCONFIRM" = "y" ];then
+    redis_install
+else
+echo "=================== install the next thing =============="
+fi
