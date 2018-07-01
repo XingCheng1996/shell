@@ -54,14 +54,14 @@ echo 'extension=mongodb.so' >> "$PHP_DIR"etc/php.ini
 
 ############################################################
 read -p " Do you want to install mongodb:Y/N " MONGODBCONFIRM
-if [ "$PHALCONCONFIRM" = "Y" ] || [ "$PHALCONCONFIRM" = "y" ];then
+if [ "$MONGODBCONFIRM" = "Y" ] || [ "$MONGODBCONFIRM" = "y" ];then
     mongodb_install
 else
 echo "=================== install the next thing =============="
 fi
 
 read -p " Do you want to install redis:Y/N " REDISCONFIRM
-if [ "$PHALCONCONFIRM" = "Y" ] || [ "$PHALCONCONFIRM" = "y" ];then
+if [ "$REDISCONFIRM" = "Y" ] || [ "$REDISCONFIRM" = "y" ];then
     redis_install
 else
 echo "=================== install the next thing =============="

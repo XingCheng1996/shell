@@ -26,8 +26,8 @@ echo $(node -v)
 
 
 ############################################################
-read -p " Do you want to install nodejs:Y/N " PHALCONCONFIRM
-if [ "$PHALCONCONFIRM" = "Y" ] || [ "$PHALCONCONFIRM" = "y" ];then
+read -p " Do you want to install nodejs:Y/N " CONFIRM
+if [ "$CONFIRM" = "Y" ] || [ "$CONFIRM" = "y" ];then
     nodejs_install
 else
 echo "=================== install the next thing =============="
